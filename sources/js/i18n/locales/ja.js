@@ -3,19 +3,20 @@
 // (see ../i18n.js), so anything left blank shows the English default.
 //
 // 日本語訳。空 ("") または未定義のキーは en.js / 元データ（英語）にフォールバックします。
-// 固有名詞はゲーム内の日本語表記に合わせる方針です。表記の誤りに気づいたら修正してください。
+// 固有名詞は日本語クライアントの表記に合わせています（参考: https://wikiwiki.jp/warframe/ ）。
+// 日本語クライアントでも英語表記のもの（Nightwave、Baro Ki'Teer、Warframe名、多くのNPC名など）は英語のままにしています。
 import { factionIcon } from "../../functions.js";
 
-const _baseOfOperationsTooltip = "<span title=\"オービター、ドリフターのキャンプ、またはバックルーム\">拠点</span>";
+const _baseOfOperationsTooltip = "<span title=\"オービター、漂流者のキャンプ、またはバックルーム\">拠点</span>";
 
-const _factions = `<p>勢力シンジケートは
-                 ${factionIcon("FactionSigilRebels.png")}スチール・メリディアン、
-                 ${factionIcon("FactionSigilJudge.png")}アービター・オブ・ヘクシス、
-                 ${factionIcon("FactionSigilOracle.png")}セファロン・スダ、
-                 ${factionIcon("FactionSigilBusiness.png")}ペリン・シーケンス、
-                 ${factionIcon("FactionSigilAssassins.png")}レッドヴェイル、
-                 ${factionIcon("FactionSigilChurch.png")}ニューロカ の6つです。</p>
-                 <p>${_baseOfOperationsTooltip}のシンジケート端末で、勢力シンジケートに忠誠を誓いましょう。</p>`;
+const _factions = `<p>抗争シンジケートは
+                 ${factionIcon("FactionSigilRebels.png")}スティール・メリディアン、
+                 ${factionIcon("FactionSigilJudge.png")}アービターズ・オブ・ヘクシス、
+                 ${factionIcon("FactionSigilOracle.png")}セファロン・スーダ、
+                 ${factionIcon("FactionSigilBusiness.png")}ペリン・シークエンス、
+                 ${factionIcon("FactionSigilAssassins.png")}レッド・ベール、
+                 ${factionIcon("FactionSigilChurch.png")}ニュー・ロカ の6つです。</p>
+                 <p>${_baseOfOperationsTooltip}のシンジケート端末で、抗争シンジケートに忠誠を誓いましょう。</p>`;
 
 export default {
     meta: { code: "ja", label: "日本語", htmlLang: "ja", ready: true },
@@ -103,7 +104,7 @@ export default {
         "cycle.nextCycle": "次のサイクル",
 
         "baseOfOperations.label": "拠点",
-        "baseOfOperations.tooltip": "オービター、ドリフターのキャンプ、またはバックルーム",
+        "baseOfOperations.tooltip": "オービター、漂流者のキャンプ、またはバックルーム",
 
         // desktop notifications + permission prompts
         "notif.toggleFor": "{name} の通知を切り替え",
@@ -147,90 +148,88 @@ export default {
     tasks: {
         // --- daily ---
         daily_login: { title: "ログイン", text: "デイリーログイン報酬を受け取る。" },
-        daily_craft_forma: { title: "製作（フォーマ）", text: "新しいフォーマの製作を始める（完成したものも回収する）。", location: "拠点", terminal: "鋳造所" },
-        daily_craft_other: { title: "製作（その他）", text: "再利用できる設計図で、毎日作れる資源やアイテムを製作する（鋳造所やコンパニオンアプリで確認）。", location: "拠点", terminal: "鋳造所" },
-        daily_first_win_bonus: { title: "デイリー初勝利ボーナス", text: "その日最初のミッションで、基本クレジット報酬が2倍になる。", location: "拠点", terminal: "ナビゲーション" },
-        daily_syndicate_gain: { title: "勢力シンジケート", text: "忠誠を誓ったシンジケートの名声を、1日の上限まで稼ぐ。", prereq: "マスタリーランク 3", info: "どのミッションでもアフィニティを稼ぐと勢力の名声が上がる" },
-        daily_syndicate_spend: { title: "勢力シンジケート", text: "名声が上限に達していたら使う（レリックパック、ヴォスフォーパックなど）。", location: "拠点/任意のリレー", terminal: "シンジケート", prereq: "マスタリーランク 3" },
-        daily_world_syndicate_parent: { title: "ワールドシンジケート", text: "名声を稼ぐ。" },
-        daily_world_syndicate_simaris: { title: "セファロン・シマリス", location: "任意のリレー" },
-        daily_world_syndicate_ostron: { title: "オストロン", location: "地球、シータス", prereq: "サヤの不寝番" },
-        daily_world_syndicate_quills: { title: "クイル", location: "地球、シータス", prereq: "内なる戦い" },
-        daily_world_syndicate_solaris: { title: "ソラリス・ユナイテッド", location: "金星、フォーチュナ", prereq: "ヴォックス・ソラリス（クエスト）" },
-        daily_world_syndicate_vox: { title: "ヴォックス・ソラリス", location: "金星、フォーチュナ", prereq: "内なる戦い" },
-        daily_world_syndicate_ventkids: { title: "ベントキッズ", location: "金星、フォーチュナ", prereq: "ヴォックス・ソラリス（クエスト）" },
-        daily_world_syndicate_entrati: { title: "エントラティ", location: "ダイモス、ネクラリスク", prereq: "ダイモスの心臓" },
-        daily_world_syndicate_necraloid: { title: "ネクラロイド", location: "ダイモス、ネクラリスク", prereq: "内なる戦い" },
-        daily_world_syndicate_holdfasts: { title: "ホールドファスト", location: "ザリマン、クリサリス", prereq: "ザリマンの天使" },
-        daily_world_syndicate_cavia: { title: "カヴィア", location: "ダイモス、サンクタム・アナトミカ", prereq: "壁の中の囁き" },
-        daily_world_syndicate_hex: { title: "ヘックス", location: "ホルヴァニア・セントラルモール", prereq: "ヘックス（クエスト）" },
-        daily_nightwave: { title: "ナイトウェイブ", text: "デイリーのナイトウェイブ課題をこなす。" },
-        daily_sortie: { title: "ソーティ", text: "デイリーのソーティ3ミッションをクリアする。", location: "拠点", terminal: "ナビゲーション", prereq: "内なる戦い" },
-        daily_focus: { title: "フォーカス", text: "1日のフォーカス獲得上限まで稼ぐ（サンクチュアリ・オンスロートなど）。", prereq: "第二の夢" },
-        daily_steel_path: { title: "鋼の道インカージョン", text: "デイリーの鋼の道ミッションをクリアして、鋼のエッセンスを入手する。", prereq: "鋼の道の解放" },
-        daily_kim_parent: { title: "KIM", text: "プロトフレームとのデイリーチャットを済ませる。", location: "拠点", terminal: "POM-2 PC" },
+        daily_craft_forma: { title: "製作（フォーマ）", text: "新しいフォーマの製作を始める（完成したものも回収する）。", location: "拠点", terminal: "ファウンドリ" },
+        daily_craft_other: { title: "製作（その他）", text: "再利用できる設計図で、毎日作れる素材やアイテムを製作する（ファウンドリやコンパニオンアプリで確認）。", location: "拠点", terminal: "ファウンドリ" },
+        daily_first_win_bonus: { title: "デイリー初勝利ボーナス", text: "その日最初のミッションで、基本クレジット報酬が2倍になる。", location: "拠点", terminal: "星系マップ" },
+        daily_syndicate_gain: { title: "抗争シンジケート", text: "忠誠を誓ったシンジケートの地位ポイントを、1日の上限まで稼ぐ。", prereq: "マスタリーランク 3", info: "どのミッションでもアフィニティを稼ぐと地位ポイントが上がる" },
+        daily_syndicate_spend: { title: "抗争シンジケート", text: "地位ポイントが上限に達していたら使う（VOIDレリックパック、ヴォスフォルパックなど）。", location: "拠点/いずれかのテンノリレー", terminal: "シンジケート", prereq: "マスタリーランク 3" },
+        daily_world_syndicate_parent: { title: "中立シンジケート", text: "地位ポイントを稼ぐ。" },
+        daily_world_syndicate_simaris: { title: "セファロン・シマリス", location: "いずれかのテンノリレー" },
+        daily_world_syndicate_ostron: { title: "オストロン", location: "地球、シータス", prereq: "Sayaの眼" },
+        daily_world_syndicate_quills: { title: "クイル", location: "地球、シータス", prereq: "内なる紛争" },
+        daily_world_syndicate_solaris: { title: "ソラリス連合", location: "金星、フォーチュナー", prereq: "Vox Solaris（クエスト）" },
+        daily_world_syndicate_vox: { location: "金星、フォーチュナー", prereq: "内なる紛争" },
+        daily_world_syndicate_ventkids: { title: "ベントキッド", location: "金星、フォーチュナー", prereq: "Vox Solaris（クエスト）" },
+        daily_world_syndicate_entrati: { title: "エントラティ", location: "ダイモス、ネクロリスク", prereq: "ダイモスの心臓" },
+        daily_world_syndicate_necraloid: { title: "ネクロロイド", location: "ダイモス、ネクロリスク", prereq: "内なる紛争" },
+        daily_world_syndicate_holdfasts: { title: "ホールドファスト", location: "Zariman、クリサリス", prereq: "Zarimanの天使" },
+        daily_world_syndicate_cavia: { title: "カビア", location: "ダイモス、サンクタム・アナトミカ", prereq: "壁の中の囁き" },
+        daily_world_syndicate_hex: { title: "ヘックス", location: "ホルバニア セントラルモール", prereq: "ヘックス（クエスト）" },
+        daily_nightwave: { text: "デイリーのNightwaveアクトをこなす。" },
+        daily_sortie: { title: "ソーティー", text: "デイリーのソーティー3ミッションをクリアする。", location: "拠点", terminal: "星系マップ", prereq: "内なる紛争" },
+        daily_focus: { title: "フォーカス", text: "1日のフォーカス獲得上限まで稼ぐ（サンクチュアリ交戦など）。", prereq: "二番目の夢" },
+        daily_steel_path: { title: "鋼の道のり襲撃", text: "デイリーの鋼の道のりミッションをクリアして、スティール・エッセンスを入手する。", prereq: "鋼の道のりの解放" },
+        daily_kim_parent: { text: "Protoframeとのデイリーチャットを済ませる。", location: "拠点", terminal: "Pom-2 PC" },
         daily_kim_hex_parent: { title: "ヘックス", prereq: "ヘックス（クエスト）" },
-        daily_kim_roundtable_parent: { title: "ラウンドテーブル", prereq: "ヘックス（クエスト）のフィナーレ" },
-        daily_kim_flare: { prereq: "ヘックス ランク4" },
-        daily_kim_minerva_velimir: { prereq: "ヘックス ランク5" },
-        daily_kim_kaya: { prereq: "ヘックス ランク5" },
-        daily_kim_devils_triad_parent: { title: "デビルズ・トライアド", prereq: "旧き平和" },
-        daily_kim_marie: { title: "マリー" },
-        daily_kim_roathe: { title: "ロース" },
-        daily_kim_lyon: { title: "リヨン", prereq: "マリーの好感度「Liked」" },
-        daily_kim_fables: { prereq: "アミールの好感度「Close」" },
+        daily_kim_roundtable_parent: { title: "ラウンドテーブル", prereq: "ヘックス フィナーレ" },
+        daily_kim_flare: { prereq: "ヘックス ランク4「アツアツ」" },
+        daily_kim_minerva_velimir: { prereq: "ヘックス ランク5「ピザパーティー」" },
+        daily_kim_kaya: { prereq: "ヘックス ランク5「ピザパーティー」" },
+        daily_kim_devils_triad_parent: { title: "悪魔の大三角", prereq: "古の同盟" },
+        daily_kim_lyon: { prereq: "Marieの好感度「好感」" },
+        daily_kim_fables: { prereq: "Amirの好感度「親密」" },
         daily_vendors: { title: "商人" },
-        daily_acrithis: { title: "アクリシス", text: "デイリーのアルケインとキャプチュラの品揃えを確認する。", location: "デュヴィリ/ドーミゾーン", npc: "アクリシス", prereq: "ドリフター固有能力：オポチュニティ ランク9（アルケインの場合）" },
-        daily_ticker_crew: { title: "ティッカー", text: "雇えるレールジャックの乗組員を確認する。", location: "金星、フォーチュナ", npc: "ティッカー", prereq: "ライジング・タイド ＆ コマンド固有能力 1" },
-        daily_marie: { title: "マリー", text: "テクトリストMOD、アルケイン、ペリタ/ディセンディア用の資源を購入する。", location: "ラ・カテドラル（ダイモス、サンクタム・アナトミカ）", npc: "マリー", prereq: "旧き平和" },
+        daily_acrithis: { text: "デイリーのアルケインとキャプチュラの品揃えを確認する。", location: "デュヴィリ/ドルムゾーン", prereq: "漂流者性能値：好機 ランク9（アルケインの場合）" },
+        daily_ticker_crew: { text: "雇えるレールジャッククルーを確認する。", location: "金星、フォーチュナー", prereq: "流転する形勢 ＆ レールジャック性能値：指揮 1" },
+        daily_marie: { text: "テクトリストアーティファクト（MOD、アルケイン）と、ペリタの乱/ディセンディアの素材を購入する。", location: "大聖堂（ダイモス、サンクタム・アナトミカ）", prereq: "古の同盟" },
 
         // --- weekly ---
-        weekly_nightwave_complete: { title: "ナイトウェイブ", text: "必要なウィークリーのナイトウェイブ課題をこなす。" },
-        weekly_nightwave_spend: { title: "ナイトウェイブ（消費）", text: "必要に応じてナイトウェイブクレジットを使う（オーラMOD、カタリスト/リアクターなど）。" },
-        weekly_ayatan: { title: "アヤタン宝探し", text: "マルーのウィークリーミッションをクリアして、アヤタン彫像を入手する。", location: "火星、マルーのバザー", npc: "マルー" },
-        weekly_clem: { title: "クレムを助けよ", text: "クレムのウィークリー耐久ミッションを手伝う。さもないと彼は死んでしまう。", location: "任意のリレー", npc: "ダルヴォ", prereq: "寡黙な男" },
-        weekly_kahl_garrison: { title: "ナルメルを打ち破れ", text: "カールのウィークリーミッションをクリアして、ストックを入手する。", location: "地球、ドリフターのキャンプ", npc: "カール", prereq: "ヴェールブレイカー" },
-        weekly_archon_hunt: { title: "アルコンハント", text: "ウィークリーのアルコンハントをクリアして、アルコンの欠片を確定で入手する。", location: "拠点", terminal: "ナビゲーション", prereq: "新たなる戦争" },
-        weekly_duviri_circuit: { title: "デュヴィリ・サーキット（通常）", text: "今週選べるWarframeを確認し、必要ならサーキットを周回する。", location: "拠点/ドーミゾーン", terminal: "ナビゲーション", prereq: "デュヴィリ・パラドックス" },
-        weekly_duviri_circuit_sp: { title: "デュヴィリ・サーキット（鋼の道）", text: "今週のインカーノンアダプターを確認し、必要ならサーキットを周回する。", location: "拠点/ドーミゾーン", terminal: "ナビゲーション", prereq: "鋼の道の解放 ＆ デュヴィリ・パラドックス" },
-        weekly_search_pulses: { title: "サーチパルス", text: "週5回のサーチパルスを、ネトラセルとアルキメデアに使う。" },
-        weekly_netracells: { title: "ネトラセル", text: "週最大5回のネトラセルミッションをクリアして、アルコンの欠片を狙う。", location: "ダイモス、サンクタム・アナトミカ", npc: "タグファー", prereq: "壁の中の囁き", info: "ミッション成功ごとにサーチパルスを1消費" },
-        weekly_eda: { title: "エリート・ディープ・アルキメデア", text: "ウィークリーのエリート・ディープ・アルキメデアに挑み、高確率でアルコンの欠片を狙う（最上級のエンドコンテンツ）。", location: "ダイモス、サンクタム・アナトミカ", npc: "ネクラロイド", prereq: "カヴィア ランク5", info: "その週の解放にサーチパルスを2消費" },
-        weekly_eta: { title: "エリート・テンポラル・アルキメデア", text: "ウィークリーのエリート・テンポラル・アルキメデアに挑み、高確率でアルコンの欠片を狙う（最上級のエンドコンテンツ）。", location: "ホルヴァニア・セントラルモール", npc: "カヤ・ベラスコ", prereq: "ヘックス ランク5", info: "その週の解放にサーチパルスを2消費" },
-        weekly_cryobells: { title: "クライオベル", text: "ユーヴァン山頂でクライオベルを3つ採取する。", location: "地球、ユーヴァン山頂", prereq: "ザリマンの天使 ＆ 壁の中の囁き", info: "クライオベルは同時に6つまで所持できる" },
-        weekly_icebind: { title: "アイスバインド", text: "クライオベルを使って、6人用のアイスバインドミッションに挑む。", location: "地球、ユーヴァン山頂", npc: "セファロン・メリカ", prereq: "ザリマンの天使、壁の中の囁き、<span title=\"エリート・ディープ・アルキメデア\">EDA</span> または <span title=\"エリート・テンポラル・アルキメデア\">ETA</span> の解放", info: "ミッション成功ごとに、プレイヤー1人につきクライオベルを1消費" },
-        weekly_calendar: { title: "1999 カレンダー", text: "ウィークリーのカレンダー課題をこなす。", location: "拠点", terminal: "POM-2 PC", prereq: "ヘックス" },
-        weekly_invigorations: { title: "ヘルミンス", text: "ウィークリーのインヴィゴレーションを使う。", location: "拠点", npc: "ヘルミンス", prereq: "エントラティ ランク5" },
-        weekly_descendia: { title: "ディセンディア（通常）", text: "さまざまな資源が手に入る、ウィークリーの塔ゲームモード。", location: "拠点 または ダイモス、サンクタム・アナトミカ", terminal: "ダーク・リフラクトリー" },
-        weekly_descendia_sp: { title: "ディセンディア（鋼の道）", text: "さまざまな資源が手に入る、ウィークリーの塔ゲームモード。", location: "拠点 または ダイモス、サンクタム・アナトミカ", terminal: "ダーク・リフラクトリー" },
-        weekly_oops_all_eximus: { text: "サージ・エクシマスを殲滅して、サージ・エクシマス・スペクターの設計図を入手する。", location: "ホルヴァニア・セントラルモール", npc: "アミール（ホルヴァンデイム）", prereq: "KIM の Fables &amp; Frontiers ストーリーを6日分すべて完了" },
-        weekly_clan_initiative: { title: "クラン・ウィークリー・イニシアチブ", text: "クランメンバーと一緒にプレイして報酬を獲得する。", location: "任意のミッション*", terminal: "メニュー &#x1F782; コミュニケーション &#x1F782; クラン", prereq: "クランへの所属" },
+        weekly_nightwave_complete: { text: "必要なウィークリーのNightwaveアクトをこなす。" },
+        weekly_nightwave_spend: { title: "Nightwave（消費）", text: "必要に応じてクレドを使う（オーラMOD、オロキン カタリスト/リアクターなど）。" },
+        weekly_ayatan: { title: "アヤタントレジャー", text: "Marooのウィークリーミッションをクリアして、AYATAN像を入手する。", location: "火星、Marooのバザー" },
+        weekly_clem: { title: "CLEMのお手伝い", text: "Clemのウィークリー耐久ミッションを手伝う。さもないと彼は死んでしまう。", location: "いずれかのテンノリレー", prereq: "寡黙な人物" },
+        weekly_kahl_garrison: { title: "ナルメル破壊ミッション", text: "Kahlのウィークリーミッションをクリアして、ストックを入手する。", location: "地球、漂流者のキャンプ", prereq: "ベールブレイカー" },
+        weekly_archon_hunt: { title: "アルコン討伐戦", text: "ウィークリーのアルコン討伐戦をクリアして、アルコンの欠片を確定で入手する。", location: "拠点", terminal: "星系マップ", prereq: "新たな大戦" },
+        weekly_duviri_circuit: { title: "デュヴィリ サーキット（通常）", text: "今週選べるWarframeを確認し、必要ならサーキットを周回する。", location: "拠点/ドルムゾーン", terminal: "星系マップ", prereq: "デュヴィリ・パラドックス" },
+        weekly_duviri_circuit_sp: { title: "デュヴィリ サーキット（鋼の道のり）", text: "今週のIncarnonアダプターを確認し、必要ならサーキットを周回する。", location: "拠点/ドルムゾーン", terminal: "星系マップ", prereq: "鋼の道のりの解放 ＆ デュヴィリ・パラドックス" },
+        weekly_search_pulses: { title: "サーチパルス", text: "週5回のサーチパルスを、ネットセルとアルキメデアに使う。" },
+        weekly_netracells: { title: "ネットセル", text: "週最大5回のネットセルミッションをクリアして、アルコンの欠片を狙う。", location: "ダイモス、サンクタム・アナトミカ", prereq: "壁の中の囁き", info: "ミッション成功ごとにサーチパルスを1消費" },
+        weekly_eda: { title: "深淵アルキメデア（上級）", text: "ウィークリーの上級深淵アルキメデアに挑み、高確率でアルコンの欠片を狙う（最上級のエンドコンテンツ）。", location: "ダイモス、サンクタム・アナトミカ", npc: "Loid（ネクロロイド）", prereq: "カビア ランク5「啓蒙者」", info: "その週の解放にサーチパルスを2消費" },
+        weekly_eta: { title: "次元アルキメデア（上級）", text: "ウィークリーの上級次元アルキメデアに挑み、高確率でアルコンの欠片を狙う（最上級のエンドコンテンツ）。", location: "ホルバニア セントラルモール", npc: "Kaya", prereq: "ヘックス ランク5「ピザパーティー」", info: "その週の解放にサーチパルスを2消費" },
+        weekly_cryobells: { title: "クライオベル", text: "ユヴァン峰でクライオベルを3つ採取する。", location: "地球、ユヴァン峰", prereq: "Zarimanの天使 ＆ 壁の中の囁き", info: "クライオベルは最大6個まで貯めておける" },
+        weekly_icebind: { title: "氷河の縛り", text: "クライオベルを使って、6人用の氷河の縛りミッションに挑む。", location: "地球、ユヴァン峰", prereq: "Zarimanの天使、壁の中の囁き、<span title=\"深淵アルキメデア（上級）\">EDA</span> または <span title=\"次元アルキメデア（上級）\">ETA</span> の解放", info: "ミッション成功ごとに、プレイヤー1人につきクライオベルを1消費" },
+        weekly_calendar: { title: "1999年のカレンダー", text: "ウィークリーのカレンダー課題をこなす。", location: "拠点", terminal: "Pom-2 PC", prereq: "ヘックス" },
+        weekly_invigorations: { text: "ウィークリーの活性化を使う。", location: "拠点", prereq: "エントラティ ランク5" },
+        weekly_descendia: { title: "ディセンディア（通常）", text: "さまざまな素材が手に入る、ウィークリーの塔ゲームモード。", location: "拠点 または ダイモス、サンクタム・アナトミカ" },
+        weekly_descendia_sp: { title: "ディセンディア（鋼の道のり）", text: "さまざまな素材が手に入る、ウィークリーの塔ゲームモード。", location: "拠点 または ダイモス、サンクタム・アナトミカ" },
+        weekly_oops_all_eximus: { text: "サージ エクシマスを抹殺して、サージ エクシマスのスペクター設計図を入手する。", location: "ホルバニア セントラルモール", npc: "Amir（ホルバンデイム）", prereq: "KIM の Fables &amp; Frontiers ストーリーを6日分すべて完了" },
+        weekly_clan_initiative: { title: "クラン ウィークリー個人報酬", text: "クランメンバーと一緒にプレイして報酬を獲得する。", location: "任意のミッション*", terminal: "ESCメニュー &#x1F782; コミュニケーション &#x1F782; クラン", prereq: "クランへの所属" },
         weekly_vendors: { title: "商人" },
-        weekly_iron_wake: { title: "パラディーノ", text: "リヴンの欠片を交換する。", location: "地球、アイアン・ウェイク", npc: "パラディーノ", prereq: "ハロウの鎖" },
-        weekly_yonta: { title: "アルキメデアン・ヨンタ", text: "ヴォイドプルームで、ウィークリーのクバを購入する。", location: "ザリマン、クリサリス", npc: "ヨンタ", prereq: "ザリマンの天使" },
-        weekly_acrithis: { title: "アクリシス", text: "品揃えを確認し、必要ならパトスクランプを使う（必要ならカタリスト/リアクターがおすすめ）。スカトラーの殻でクバを購入する。", location: "デュヴィリ/ドーミゾーン", npc: "アクリシス", prereq: "デュヴィリ・パラドックス" },
-        weekly_teshin: { title: "テシン（鋼の道）", text: "テシンの鋼のエッセンスショップを確認する（特に8週ごとに並ぶアンブラフォーマ）。", location: "任意のリレー", npc: "テシン", prereq: "鋼の道の解放" },
-        weekly_bird3: { title: "バード3", text: "カヴィアの名声 30,000 で、ウィークリーのアルコンの欠片を購入する。", location: "ダイモス、サンクタム・アナトミカ", npc: "バード3", prereq: "カヴィア ランク5" },
-        weekly_kaya: { title: "カヤ", text: "ピクスチップをアルケインと交換する。", location: "ホルヴァニア・セントラルモール", npc: "カヤ・ベラスコ", prereq: "エリート・テンポラル・アルキメデア" },
-        weekly_nightcap: { title: "ナイトキャップ", text: "ファーゴライトを、クバやアヤタン彫像と交換する。", location: "金星、フォーチュナ", npc: "ナイトキャップ", prereq: "新たなる戦争" },
-        weekly_zorba: { title: "アスピラント・ゾルバ", text: "アトラメンタムをクバと交換する。", location: "任意のリレー", npc: "アスピラント・ゾルバ", prereq: "ハロウの鎖" },
-        weekly_hunhow: { title: "ハンハウ", text: "エメラルドとクリムゾンのタレントをクバと交換する。", location: "天王星、ポンティス・タワー", npc: "ハンハウ", prereq: "ジェイドの影：星座" },
-        weekly_melica: { title: "セファロン・メリカ", text: "エントロピック・クバをクバと交換する。", location: "地球、ユーヴァン山頂", npc: "セファロン・メリカ", prereq: "ザリマンの天使 ＆ 壁の中の囁き" },
+        weekly_iron_wake: { text: "Rivenの破片を交換する。", location: "地球、アイアン・ウェイク", prereq: "Harrowの鎖" },
+        weekly_yonta: { text: "ヴォイドプルームで、ウィークリーのクバを購入する。", location: "Zariman、クリサリス", prereq: "Zarimanの天使" },
+        weekly_acrithis: { text: "品揃えを確認し、必要ならパトス・クランプを使う（必要ならオロキン カタリスト/リアクターがおすすめ）。ハッチリングの外殻でクバを購入する。", location: "デュヴィリ/ドルムゾーン", prereq: "デュヴィリ・パラドックス" },
+        weekly_teshin: { title: "Teshin（鋼の道のり）", text: "Teshinの鋼の道のり勲章を確認する（特に8週ごとに並ぶUmbra フォーマの設計図）。", location: "いずれかのテンノリレー", prereq: "鋼の道のりの解放" },
+        weekly_bird3: { title: "Bird3", text: "カビアの地位ポイント 30,000 で、ウィークリーのアルコンの欠片を購入する。", location: "ダイモス、サンクタム・アナトミカ", npc: "Bird3", prereq: "カビア ランク5「啓蒙者」" },
+        weekly_kaya: { text: "ピクチャチップをアルケインと交換する。", location: "ホルバニア セントラルモール", npc: "Kaya", prereq: "次元アルキメデア（上級）" },
+        weekly_nightcap: { text: "ファーゴライトを、クバやAYATAN像と交換する。", location: "金星、フォーチュナー", prereq: "新たな大戦" },
+        weekly_zorba: { text: "アトラメンタムをクバと交換する。", location: "いずれかのテンノリレー", prereq: "Harrowの鎖" },
+        weekly_hunhow: { text: "エメラルド・タレントとクリムゾン・タレントをクバと交換する。", location: "天王星、ポンティス・タワー", prereq: "翡翠の影：星座" },
+        weekly_melica: { text: "エントロピック・クバをクバと交換する。", location: "地球、ユヴァン峰", prereq: "Zarimanの天使 ＆ 壁の中の囁き" },
 
         // --- other ---
-        other_baro: { title: "バロ・キティア", text: "バロ・キティアの品揃えを確認し、欲しいアイテムをデュカットで購入する（プライムパーツはデュカットに交換できる）。", location: "シンボルのあるリレー", npc: "バロ・キティア" },
-        other_grandmother_tokens: { title: "家族の絆", text: "グランマザーからファミリートークンを購入する。", location: "ダイモス、ネクラリスク", prereq: "ダイモスの心臓" },
-        other_yonta_voidplumes: { title: "ヴォイドプルームの交換", location: "ザリマン、クリサリス", npc: "ヨンタ", prereq: "ザリマンの天使" },
-        other_loid_voca: { title: "ヴォカの交換", location: "ダイモス、サンクタム・アナトミカ", npc: "ロイド", prereq: "壁の中の囁き" },
-        other_glast: { title: "テネット武器", text: "エルゴ・グラストのショップで、良いヴァレンスボーナスの武器を確認する。", location: "任意のリレー", npc: "エルゴ・グラスト", prereq: "アークウィング ＋ マスタリーランク 14" },
-        other_eleanor: { title: "コーダ武器", text: "エレノアのショップで、良いヴァレンスボーナスの武器を確認する。", location: "ホルヴァニア・セントラルモール", npc: "エレノア・ナイチンゲール", prereq: "ヘックス（クエスト）" },
+        other_baro: { text: "Baro Ki'Teerの品揃えを確認し、欲しいアイテムをデュカットで購入する（Primeパーツはデュカットに交換できる）。", location: "シンボルのあるテンノリレー" },
+        other_grandmother_tokens: { title: "家族の絆", text: "Grandmotherからファミリートークンを購入する。", location: "ダイモス、ネクロリスク", prereq: "ダイモスの心臓" },
+        other_yonta_voidplumes: { title: "ヴォイドプルームの交換", location: "Zariman、クリサリス", prereq: "Zarimanの天使" },
+        other_loid_voca: { title: "ヴォカの交換", location: "ダイモス、サンクタム・アナトミカ", prereq: "壁の中の囁き" },
+        other_glast: { title: "Tenet武器", text: "Ergo Glastのショップで、良いダメージボーナスの武器を確認する。", location: "いずれかのテンノリレー", prereq: "アークウイング ＋ マスタリーランク 14" },
+        other_eleanor: { title: "Coda武器", text: "Eleanorのショップで、良いダメージボーナスの武器を確認する。", location: "ホルバニア セントラルモール", npc: "Eleanor", prereq: "ヘックス（クエスト）" },
     },
 
     // keys must exactly match the English source text in cycles.json
     cycles: {
         // column names
         "Boss": "ボス",
-        "Coda Weapons": "コーダ武器",
+        "Coda Weapons": "Coda武器",
         "Increased Spawns": "出現増加",
         "Item": "アイテム",
         "Items": "アイテム",
@@ -241,39 +240,44 @@ export default {
         "Tileset": "タイルセット",
 
         // ayatan
-        "Ayatan Sah Sculpture": "アヤタン・サー彫像",
-        "Ayatan Ayr Sculpture": "アヤタン・エアー彫像",
-        "Ayatan Orta Sculpture": "アヤタン・オルタ彫像",
-        "Ayatan Vaya Sculpture": "アヤタン・ヴァヤ彫像",
-        "Ayatan Piv Sculpture": "アヤタン・ピヴ彫像",
-        "Ayatan Valana Sculpture": "アヤタン・ヴァラナ彫像",
+        "Ayatan Sah Sculpture": "AYATAN像（Sah）",
+        "Ayatan Ayr Sculpture": "AYATAN像（Ayr）",
+        "Ayatan Orta Sculpture": "AYATAN像（Orta）",
+        "Ayatan Vaya Sculpture": "AYATAN像（Vaya）",
+        "Ayatan Piv Sculpture": "AYATAN像（Piv）",
+        "Ayatan Valana Sculpture": "AYATAN像（Valana）",
 
         // tilesets / locations
-        "Orokin Derelict (Deimos)": "オロキン遺棄船（ダイモス）",
-        "Orokin Tower (Void)": "オロキンタワー（ボイド）",
-        "Spaceport (Orb Vallis, Venus)": "宇宙港（オーブ峡谷、金星）",
+        "Orokin Derelict (Deimos)": "遺跡船（ダイモス）",
+        "Orokin Tower (Void)": "オロキンタワー（VOID）",
+        "Spaceport (Orb Vallis, Venus)": "スペースポート（オーブ峡谷、金星）",
         "Grineer Forest (Earth)": "グリニア森林（地球）",
         "Grineer Settlement (Mars)": "グリニア居住区（火星）",
-        "Corpus Gas City (Jupiter)": "コーパス・ガスシティ（木星）",
-        "Murex": "ミュレックス",
-        "Strata Relay, Earth": "ストラタ・リレー（地球）",
-        "Kronia Relay, Saturn": "クロニア・リレー（土星）",
-        "Larunda Relay, Mercury": "ラルンダ・リレー（水星）",
-        "Orcus Relay, Pluto (MR 8+)": "オルクス・リレー（冥王星、MR 8以上）",
+        "Corpus Gas City (Jupiter)": "コーパス ガスシティ（木星）",
+        "Murex": "ミュレックス監獄",
+        "Strata Relay, Earth": "Strata リレー（地球）",
+        "Kronia Relay, Saturn": "Kronia リレー（土星）",
+        "Larunda Relay, Mercury": "Larunda リレー（水星）",
+        "Orcus Relay, Pluto (MR 8+)": "Orcus リレー（冥王星、MR 8以上）",
+
+        // kahl's garrison
+        "Sneaky Sabotage": "潜入＆妨害",
+        "Junk Run": "ジャンク回収",
+        "Prison Break": "脱獄",
 
         // archon hunt
-        "Azure Archon Shard": "アズール・アルコンの欠片",
-        "Crimson Archon Shard": "クリムゾン・アルコンの欠片",
-        "Amber Archon Shard": "アンバー・アルコンの欠片",
-        "🦉 Archon Boreal": "🦉 アルコン・ボレアル",
-        "🐺 Archon Amar": "🐺 アルコン・アマー",
-        "🐍 Archon Nira": "🐍 アルコン・ニラ",
+        "Azure Archon Shard": "アルコンの欠片「蒼天」",
+        "Crimson Archon Shard": "アルコンの欠片「真紅」",
+        "Amber Archon Shard": "アルコンの欠片「琥珀」",
+        "🦉 Archon Boreal": "🦉 BOREALアルコン",
+        "🐺 Archon Amar": "🐺 AMARアルコン",
+        "🐍 Archon Nira": "🐍 NIRAアルコン",
 
         // eximus
-        "❄️ Arctic Eximus": "❄️ アークティック・エクシマス",
-        "🔥 Arson Eximus": "🔥 アーソン・エクシマス",
-        "🟢 Jade Light Eximus": "🟢 ジェイドライト・エクシマス",
-        "🧲 Energy Leech Eximus": "🧲 エナジーリーチ・エクシマス",
+        "❄️ Arctic Eximus": "❄️ アークティック エクシマス",
+        "🔥 Arson Eximus": "🔥 アーソン エクシマス",
+        "🟢 Jade Light Eximus": "🟢 ジェイドライト エクシマス",
+        "🧲 Energy Leech Eximus": "🧲 エネルギーリーチ エクシマス",
 
         // seasons
         "Spring": "春",
@@ -282,27 +286,42 @@ export default {
         "Winter": "冬",
 
         // rewards
-        "30,000 Endo": "30,000 エンド",
+        "30,000 Endo": "30,000 ENDO",
         "50,000 Kuva": "50,000 クバ",
-        "3x Built Forma": "製作済みフォーマ ×3",
-        "Umbra Forma Blueprint": "アンブラフォーマの設計図",
-        "Kitgun Riven Mod": "キットガン リヴンMOD",
-        "Rifle Riven Mod": "ライフル リヴンMOD",
-        "Shotgun Riven Mod": "ショットガン リヴンMOD",
-        "Zaw Riven Mod": "ザウ リヴンMOD",
+        "3x Built Forma": "フォーマ（完成品）×3",
+        "Umbra Forma Blueprint": "Umbra フォーマの設計図",
+        "Kitgun Riven Mod": "Kitgun Riven Mod",
+        "Rifle Riven Mod": "ライフル Riven Mod",
+        "Shotgun Riven Mod": "ショットガン Riven Mod",
+        "Zaw Riven Mod": "Zaw Riven Mod",
 
-        // duviri circuit warframes
-        "Blueprints for Excalibur, Trinity, or Ember": "エクスカリバー、トリニティ、エンバーの設計図",
-        "Blueprints for Loki, Mag, or Rhino": "ロキ、マグ、ライノの設計図",
-        "Blueprints for Ash, Frost, or Nyx": "アッシュ、フロスト、ニクスの設計図",
-        "Blueprints for Saryn, Vauban, or Nova": "サリン、ヴォーバン、ノヴァの設計図",
-        "Blueprints for Nekros, Valkyr, or Oberon": "ネクロス、ヴァルキリー、オベロンの設計図",
-        "Blueprints for Hydroid, Mirage, or Limbo": "ハイドロイド、ミラージュ、リンボの設計図",
-        "Blueprints for Mesa, Chroma, or Atlas": "メサ、クロマ、アトラスの設計図",
-        "Blueprints for Ivara, Inaros, or Titania": "イヴァラ、イナロス、タイタニアの設計図",
-        "Blueprints for Nidus, Octavia, or Harrow": "ナイダス、オクタヴィア、ハロウの設計図",
-        "Blueprints for Gara, Khora, or Revenant": "ガラ、コーラ、レヴナントの設計図",
-        "Blueprints for Garuda, Baruuk, or Hildryn": "ガルーダ、バルーク、ヒルドリンの設計図",
+        // duviri circuit warframes (Warframe names stay in English in the Japanese client)
+        "Blueprints for Excalibur, Trinity, or Ember": "Excalibur、Trinity、Ember の設計図",
+        "Blueprints for Loki, Mag, or Rhino": "Loki、Mag、Rhino の設計図",
+        "Blueprints for Ash, Frost, or Nyx": "Ash、Frost、Nyx の設計図",
+        "Blueprints for Saryn, Vauban, or Nova": "Saryn、Vauban、Nova の設計図",
+        "Blueprints for Nekros, Valkyr, or Oberon": "Nekros、Valkyr、Oberon の設計図",
+        "Blueprints for Hydroid, Mirage, or Limbo": "Hydroid、Mirage、Limbo の設計図",
+        "Blueprints for Mesa, Chroma, or Atlas": "Mesa、Chroma、Atlas の設計図",
+        "Blueprints for Ivara, Inaros, or Titania": "Ivara、Inaros、Titania の設計図",
+        "Blueprints for Nidus, Octavia, or Harrow": "Nidus、Octavia、Harrow の設計図",
+        "Blueprints for Gara, Khora, or Revenant": "Gara、Khora、Revenant の設計図",
+        "Blueprints for Garuda, Baruuk, or Hildryn": "Garuda、Baruuk、Hildryn の設計図",
+
+        // duviri circuit incarnon adapters (weapon names stay in English in the Japanese client)
+        "Incarnon Adapters for Braton, Kunai, Lato, Paris, and Skana": "Braton、Kunai、Lato、Paris、Skana の Incarnonアダプター",
+        "Incarnon Adapters for Bo, Furax, Furis, Latron, and Strun": "Bo、Furax、Furis、Latron、Strun の Incarnonアダプター",
+        "Incarnon Adapters for Boltor, Bronco, Ceramic Dagger, Lex, and Magistar": "Boltor、Bronco、Ceramic Dagger、Lex、Magistar の Incarnonアダプター",
+        "Incarnon Adapters for Angstrum, Anku, Boar, Gammacor, and Gorgon": "Angstrum、Anku、Boar、Gammacor、Gorgon の Incarnonアダプター",
+        "Incarnon Adapters for Atomos, Dual Ichor, Dual Toxocyst, Miter, and Torid": "Atomos、Dual Ichor、Dual Toxocyst、Miter、Torid の Incarnonアダプター",
+        "Incarnon Adapters for Ack &amp; Brunt, Burston, Nami Solo, Soma, and Vasto": "Ack &amp; Brunt、Burston、Nami Solo、Soma、Vasto の Incarnonアダプター",
+        "Incarnon Adapters for Ballistica, Destreza, Obex, Stug, and Vectis": "Ballistica、Destreza、Obex、Stug、Vectis の Incarnonアダプター",
+        "Incarnon Adapters for Cestra, Dera, Okina, Sicarus, and Sybaris": "Cestra、Dera、Okina、Sicarus、Sybaris の Incarnonアダプター",
+        "Incarnon Adapters for Despair, Dread, Hate, Sibear, and Zylok": "Despair、Dread、Hate、Sibear、Zylok の Incarnonアダプター",
+
+        // coda weapons (weapon names stay in English in the Japanese client)
+        "Hema, Sporothrix, Catabolyst, Pox, Dual Torxica, Mire, and Motovore": "Hema、Sporothrix、Catabolyst、Pox、Dual Torxica、Mire、Motovore",
+        "Bassocyst, Bubonico, Synapse, Tysis, Caustacyst, Hirudo, and Pathocyst": "Bassocyst、Bubonico、Synapse、Tysis、Caustacyst、Hirudo、Pathocyst",
     },
 
     moreInfo: {
@@ -311,8 +330,8 @@ export default {
     <ul>
         <li><strong>インデックス</strong></li>
         <li>オープンワールド（プロフィット・テイカーを含む）</li>
-        <li>ザリマン</li>
-        <li>ホルヴァニア（テックロットの金庫を含む）</li>
+        <li>Zariman</li>
+        <li>ホルバニア（テックロットの金庫を含む）</li>
     </ul>
     <p>これらのミッションをクリアすると、追加クレジットはもらえずにボーナスだけが消費されます。</p>
     <p>ボーナスはクレジットブースター、クレジットの祝福、クレジット2倍イベントと<strong>重複します</strong>。リレーなどミッション以外のエリアに移動しても、ボーナスは<strong>消費されません</strong>。</p>
@@ -339,12 +358,12 @@ export default {
             </tr>
             <tr>
                 <td>Bendar Cluster（地球プロキシマ）</td>
-                <td>レールジャック 小競り合い</td>
+                <td>レールジャック 小戦</td>
                 <td>48,800</td>
                 <td>29 - 36</td>
             </tr>
             <tr>
-                <td>Sabmir Cloud（ヴェールプロキシマ）</td>
+                <td>Sabmir Cloud（ベールプロキシマ）</td>
                 <td>レールジャック 潜入</td>
                 <td>156,600</td>
                 <td>56 - 60</td>
@@ -357,10 +376,10 @@ export default {
         daily_syndicate_gain: _factions,
         daily_syndicate_spend: _factions,
 
-        weekly_clan_initiative: `<p>クランのメンバーと分隊を組んでプレイすると、クラン保管庫にボーナス資源が入ります。ボーナス資源は、その週の個人報酬トラックの進行にもカウントされます。進行度は、クランメンバーと一緒のミッションで集めた資源の量で決まります。</p>
-    <p>毎週ランダムに選ばれる惑星では、そこでプレイしたミッションの保管庫ボーナス資源（と報酬トラックの進行）が2倍になります。</p>
+        weekly_clan_initiative: `<p>クランのメンバーと分隊を組んでプレイすると、クラン貯蔵庫にボーナス素材が入ります。ボーナス素材は、その週のウィークリー個人報酬の進行にもカウントされます。進行度は、クランメンバーと一緒のミッションで集めた素材の量で決まります。</p>
+    <p>毎週ランダムに選ばれる惑星（ウィークリー惑星ボーナス）では、そこでプレイしたミッションのボーナス素材量と個人報酬の進行度が2倍になります。</p>
     <p>今週のボーナス惑星と報酬の進行度は、クランメニューで確認できます。</p>
-    <p><strong>注意：</strong>マッチメイキングの「クランのみ」設定でクランや同盟のメンバーと分隊を組めますが、同盟メンバーとのプレイでは保管庫のボーナス資源や報酬の進行は<em>得られません</em>。</p>
-    <p>* ディセンディアのミッションは、クラン・ウィークリー・イニシアチブの対象外です。</p>`,
+    <p><strong>注意：</strong>マッチメイキングの「クランのみ」設定でクランや連盟のメンバーと分隊を組めますが、連盟メンバーとのプレイではボーナス素材や報酬の進行は<em>得られません</em>。</p>
+    <p>* ディセンディアのミッションは、クラン ウィークリー個人報酬の対象外です。</p>`,
     },
 };
