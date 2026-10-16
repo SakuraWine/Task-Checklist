@@ -5,13 +5,20 @@ import tasks from "../js/tasks.json" with { type: "json" };
 const en = LOCALE_MODULES.en;
 const enKeys = Object.keys(en.ui);
 const PH = /\{(\w+)\}/g;
-const phset = (s) => new Set(s.match(PH) || []);
-const eqSet = (a, b) => a.size === b.size && [...a].every((x) => b.has(x));
+function phset(s) {
+    return new Set(s.match(PH) || []);
+}
+function eqSet(a, b) {
+    return a.size === b.size && [...a].every((x) => b.has(x));
+}
 
 // flatten task ids
 const ids = new Set();
-const walk = (t) => { ids.add(t.id); (t.subtasks || []).forEach(walk); };
-for (const s in tasks) tasks[s].forEach(walk);
+function walk(t) {
+    ids.add(t.id);
+    (t.subtasks || []).forEach(walk);
+}
+for (const s in tasks) { tasks[s].forEach(walk); }
 
 // every active non-English locale (auto-tracks whatever's registered in i18n.js)
 const otherLocales = Object.entries(LOCALE_MODULES).filter(([code]) => code !== "en");

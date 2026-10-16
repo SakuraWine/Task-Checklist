@@ -11,7 +11,7 @@ function _factionIcon(name) {
     return `<img class="icon-filter inline-icon" src="${src}">`;
 }
 
-const _baseOfOperationsTooltip = `<span class="tooltip" title="Orbiter, Camp du Drifter ou Arrière-salle">Base d'opérations</span>`;
+const _baseOfOperationsTooltip = "<span class=\"tooltip\" title=\"Orbiter, Camp du Drifter ou Arrière-salle\">Base d'opérations</span>";
 
 const factions = `<p>Les Syndicats de Faction sont
                  ${_factionIcon("FactionSigilRebels.png")}Le Méridien d'Acier,
@@ -141,7 +141,8 @@ export default {
         "hiddenList.subtasks": "",
         "hiddenList.section": "",
 
-        // save/load/startup errors        "errors.saveFailed": "Impossible d'enregistrer la progression.",
+        // save/load/startup errors
+        "errors.saveFailed": "Impossible d'enregistrer la progression.",
         "errors.saveFailedQuota": "Impossible d'enregistrer la progression. Le stockage du navigateur est peut-être plein.",
         "errors.loadFailed": "Échec du chargement de la progression enregistrée. Les données sont peut-être corrompues.",
         "errors.themeSaveFailed": "Impossible d'enregistrer la préférence de thème.",

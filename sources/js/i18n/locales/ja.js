@@ -6,7 +6,7 @@
 // 固有名詞はゲーム内の日本語表記に合わせる方針です。表記の誤りに気づいたら修正してください。
 import { factionIcon } from "../../functions.js";
 
-const _baseOfOperationsTooltip = `<span title="オービター、ドリフターのキャンプ、またはバックルーム">拠点</span>`;
+const _baseOfOperationsTooltip = "<span title=\"オービター、ドリフターのキャンプ、またはバックルーム\">拠点</span>";
 
 const _factions = `<p>勢力シンジケートは
                  ${factionIcon("FactionSigilRebels.png")}スチール・メリディアン、

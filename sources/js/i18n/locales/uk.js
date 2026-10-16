@@ -126,7 +126,8 @@ export default {
         "hiddenList.subtasks": "",
         "hiddenList.section": "",
 
-        // save/load/startup errors        "errors.saveFailed": "",
+        // save/load/startup errors
+        "errors.saveFailed": "",
         "errors.saveFailedQuota": "",
         "errors.loadFailed": "",
         "errors.themeSaveFailed": "",

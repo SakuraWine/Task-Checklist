@@ -4,7 +4,7 @@
 // leaving a value "" keeps the English default, so partial translations are safe.
 //
 // 翻译模板。每个值均为空 ("")，在填写之前会回退到 en.js / 源数据
-//（见 ../i18n.js）。请就地填写字符串；将值留空 "" 会保留英文默认值，
+// （见 ../i18n.js）。请就地填写字符串；将值留空 "" 会保留英文默认值，
 // 因此部分翻译也是安全的。
 
 export default {
@@ -126,7 +126,8 @@ export default {
         "hiddenList.subtasks": "",
         "hiddenList.section": "",
 
-        // save/load/startup errors        "errors.saveFailed": "",
+        // save/load/startup errors
+        "errors.saveFailed": "",
         "errors.saveFailedQuota": "",
         "errors.loadFailed": "",
         "errors.themeSaveFailed": "",

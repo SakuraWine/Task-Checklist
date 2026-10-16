@@ -30,16 +30,20 @@ const TASK_FIELDS = ["title", "text", "location", "prereq", "info", "terminal", 
 export const TRANSLATE_URL = "https://github.com/SakuraWine/Task-Checklist/tree/main/sources/js/i18n";
 
 // a locale appears in the switcher only once it's marked ready; en is always available
-const isVisibleLocale = (m) => m.meta.code === DEFAULT_LOCALE || m.meta.ready === true;
+function isVisibleLocale(m) {
+    return m.meta.code === DEFAULT_LOCALE || m.meta.ready === true;
+}
 
 // [{code, label}] for the selector — English first, then the rest alphabetically
 export const AVAILABLE_LOCALES = Object.values(LOCALE_MODULES)
     .filter(isVisibleLocale)
     .map((m) => ({ code: m.meta.code, label: m.meta.label }))
     .sort((a, b) => (
-        a.code === DEFAULT_LOCALE ? -1
-        : b.code === DEFAULT_LOCALE ? 1
-        : a.label.localeCompare(b.label)
+        a.code === DEFAULT_LOCALE
+            ? -1
+            : b.code === DEFAULT_LOCALE
+                ? 1
+                : a.label.localeCompare(b.label)
     ));
 
 // map a browser language tag ("pt-BR", "zh-CN", "en-US"...) to a registered locale
@@ -59,7 +63,7 @@ export function resolveLocale(tag) {
             const script = new Intl.Locale(tag).maximize().script; // "Hans" / "Hant"
             const code = script === "Hant" ? "zh-hant" : "zh-hans";
             if (Object.hasOwn(LOCALE_MODULES, code)) { return code; }
-        } catch (e) { /* fall through to base match */ }
+        } catch { /* fall through to base match */ }
     }
     if (base === "pt" && Object.hasOwn(LOCALE_MODULES, "pt-br")) { return "pt-br"; }
 
@@ -183,7 +187,9 @@ export function localizeTasks(tasks) {
 export function localizeCycles(cycles) {
     const textMap = LOCALE_MODULES[currentLocale].cycles || {};
     // empty string = not translated yet; keep the original cell/column text
-    const tr = (s) => (Object.hasOwn(textMap, s) && textMap[s] !== "" ? textMap[s] : s);
+    function tr(s) {
+        return Object.hasOwn(textMap, s) && textMap[s] !== "" ? textMap[s] : s;
+    }
 
     for (const id in cycles) {
         for (const column of cycles[id].columns) {
@@ -222,9 +228,9 @@ export function applyStaticTranslations(root = document) {
     });
 }
 
-const CHEVRON_SVG = `<svg class="lang-chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>`;
-const CHECK_SVG = `<svg class="lang-check" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>`;
-const EXTERNAL_SVG = `<svg class="lang-ext" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>`;
+const CHEVRON_SVG = "<svg class=\"lang-chevron\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" aria-hidden=\"true\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M19.5 8.25l-7.5 7.5-7.5-7.5\" /></svg>";
+const CHECK_SVG = "<svg class=\"lang-check\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"2\" stroke=\"currentColor\" aria-hidden=\"true\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M4.5 12.75l6 6 9-13.5\" /></svg>";
+const EXTERNAL_SVG = "<svg class=\"lang-ext\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" aria-hidden=\"true\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25\" /></svg>";
 
 // custom button + listbox dropdown (a native <select> popup can't be themed)
 export function setupLanguageSwitcher(container) {
@@ -258,8 +264,11 @@ export function setupLanguageSwitcher(container) {
         item.tabIndex = -1;
         item.innerHTML = `<span class="lang-option-code">${code.toUpperCase()}</span><span class="lang-option-name">${label}</span>${selected ? CHECK_SVG : ""}`;
         item.addEventListener("click", () => {
-            if (code !== currentLocale) { setLocale(code); } // reloads the page
-            else { close(); }
+            if (code !== currentLocale) {
+                setLocale(code); // reloads the page
+            } else {
+                close();
+            }
         });
         menu.appendChild(item);
     }
@@ -276,7 +285,9 @@ export function setupLanguageSwitcher(container) {
     });
     menu.appendChild(help);
 
-    const options = () => [...menu.querySelectorAll(".lang-option")];
+    function options() {
+        return [...menu.querySelectorAll(".lang-option")];
+    }
 
     function open() {
         menu.hidden = false;
@@ -315,24 +326,40 @@ export function setupLanguageSwitcher(container) {
     function onKey(e) {
         const opts = options();
         const idx = opts.indexOf(document.activeElement);
-        if (e.key === "Escape") { e.preventDefault(); close(); trigger.focus(); }
-        else if (e.key === "Tab") { close(); trigger.focus(); } // let focus continue from the trigger
-        else if (e.key === "ArrowDown") { e.preventDefault(); (opts[idx + 1] || opts[0]).focus(); }
-        else if (e.key === "ArrowUp") { e.preventDefault(); (opts[idx - 1] || opts[opts.length - 1]).focus(); }
-        else if (e.key === "Home") { e.preventDefault(); opts[0]?.focus(); }
-        else if (e.key === "End") { e.preventDefault(); opts[opts.length - 1]?.focus(); }
-        else if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("lang-option")) {
+        if (e.key === "Escape") {
+            e.preventDefault();
+            close();
+            trigger.focus();
+        } else if (e.key === "Tab") { // let focus continue from the trigger
+            close();
+            trigger.focus();
+        } else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            (opts[idx + 1] || opts[0]).focus();
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            (opts[idx - 1] || opts[opts.length - 1]).focus();
+        } else if (e.key === "Home") {
+            e.preventDefault();
+            opts[0]?.focus();
+        } else if (e.key === "End") {
+            e.preventDefault();
+            opts[opts.length - 1]?.focus();
+        } else if ((e.key === "Enter" || e.key === " ") && document.activeElement.classList.contains("lang-option")) {
             e.preventDefault();
             document.activeElement.click();
-        }
-        else if (e.key.length === 1 && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        } else if (e.key.length === 1 && !e.metaKey && !e.ctrlKey && !e.altKey) {
             typeahead(e.key);
         }
     }
 
     trigger.addEventListener("click", (e) => {
         e.stopPropagation();
-        menu.hidden ? open() : close();
+        if (menu.hidden) {
+            open();
+        } else {
+            close();
+        }
     });
 
     // open with the keyboard and land on the right end of the list
