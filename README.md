@@ -1,3 +1,8 @@
+> [!NOTE]
+> **このリポジトリは [warframe-tools/Task-Checklist](https://github.com/warframe-tools/Task-Checklist) のフォークで、日本語化のための改変を加えています（2026年10月〜）。**
+> 多言語対応の仕組みは本家 PR [#53](https://github.com/warframe-tools/Task-Checklist/pull/53)（作者: Nova0255）を取り込み、日本語訳を追加しています。
+> 改変部分を含め、ライセンスは本家と同じ GNU GPL v3.0 以降です。
+
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/warframe-tools/Task-Checklist) ![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=flat) ![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat) ![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat) [![Discord](https://img.shields.io/badge/Discord-Chat?style=flat&logo=discord&logoColor=white&color=blue)](https://discord.gg/KQ6uQqY6gK)
 
 

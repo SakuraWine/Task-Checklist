@@ -8,20 +8,12 @@ export const SERVER_TIMEZONE = "America/Toronto"; // used for determining Daylig
 
 export const BASE_OF_OPERATIONS_TOOLTIP = '<span title="Orbiter, Drifter\'s Camp, or Backroom">Base of Operations</span>';
 
-export const TASKLIST_STAT_NAMES = {
-    "completed": "Completed",
-    "skipped": "Skipped",
-    "hidden": "Hidden",
-};
-
+// display names for stats and sections are translated via i18n (`stats.*`, `sectionName.*`)
 export const TASKLIST_STAT_PROPERTIES = {
     "completed": "progress",
     "skipped": "skippedTasks",
     "hidden": "hiddenTasks",
 };
 
-export const SECTION_NAMES = {
-    "daily": "Daily",
-    "weekly": "Weekly",
-    "other": "Other",
-};
+// where this build's source code lives (linked from the footer's commit hash)
+export const SOURCE_REPOSITORY_URL = "https://github.com/SakuraWine/Task-Checklist";
